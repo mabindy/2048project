@@ -35,6 +35,8 @@ Logic testing verifies the game’s rules and calculations, including score upda
   - Ensure merging two tiles results in a new tile with the combined value.
 - **Winning Condition**:
   - Verify that the game ends when a player reaches the `2048` tile before their opponent.
+- **Random Events**:
+  - Verify that random events trigger correctly and affect gameplay as intended.
 
 ### Logic Test Examples:
 - **Test Case**: Merging tiles of equal value.
@@ -49,6 +51,10 @@ Logic testing verifies the game’s rules and calculations, including score upda
   - **Test Data**: Player merges tiles until a `2048` tile is created.
   - **Expected Outcome**: Player wins the game, and the opponent(s) is/are notified of their loss.
 
+- **Test Case**: Random event triggers.
+  - **Test Data**: Random event "All player boards swapped" occurs during gameplay.
+  - **Expected Outcome**: All player boards are swapped, and gameplay continues with the new board state.
+
 
 ## Part 3: Boundary Testing: Edge Cases and Limits
 
@@ -62,6 +68,8 @@ Boundary testing checks how the game handles extreme situations, such as maximum
   - Ensure that the game ends properly when no moves are possible.
 - **Opponent Interaction**:
   - Verify that the opponent is notified when a player reaches the `2048` tile.
+- **Random Events**:
+  - Verify that random events handle edge cases, such as all blocks being halved when the minimum value is `2`.
 
 ### Boundary Test Examples:
 - **Test Case**: Reaching the maximum tile value.
@@ -72,6 +80,10 @@ Boundary testing checks how the game handles extreme situations, such as maximum
   - **Test Data**: The grid is fully populated with tiles of different values.
   - **Expected Outcome**: Game ends and "You lose!" message is displayed.
 
+- **Test Case**: Random event "All block values halved".
+  - **Test Data**: Grid contains tiles of value `2`.
+  - **Expected Outcome**: All tile values remain at `2` (cannot be halved further), and gameplay continues.
+
 
 ## Part 4: Integration Testing: System Interaction
 
@@ -80,16 +92,18 @@ Integration testing ensures that different parts of the game (e.g., user interfa
 
 ### Action:
 - **Gameplay and Scoring**:
-  - Verify if the score updates correctly after every move.
+  - Verify if the block values update correctly after every move.
 - **Movement and UI Interaction**:
   - Ensure the movement is reflected visually in the game grid.
 - **Player vs Opponent**:
   - Ensure that the game correctly tracks both players' progress and declares the winner appropriately.
+- **Random Events**:
+  - Verify that random events affect both players' boards and interactions consistently.
 
 ### Integration Test Examples:
-- **Test Case**: Merging tiles and score update.
+- **Test Case**: Merging tiles.
   - **Test Data**: User moves a tile to merge two tiles of value `64`.
-  - **Expected Outcome**: Score is updated, and merged tile of value `128` is displayed.
+  - **Expected Outcome**: Merged tile of value `128` is displayed.
 
 - **Test Case**: Undo functionality.
   - **Test Data**: User performs a move and then undoes it.
@@ -98,6 +112,10 @@ Integration testing ensures that different parts of the game (e.g., user interfa
 - **Test Case**: Player wins against opponent.
   - **Test Data**: Player reaches the `2048` tile before the opponent.
   - **Expected Outcome**: Player is declared the winner, and the opponent is notified of their loss.
+
+- **Test Case**: Random event "Temporary inverted controls".
+  - **Test Data**: Random event triggers inverted controls for both players.
+  - **Expected Outcome**: Controls are inverted for a limited time, and players must adapt to continue playing.
 
 
 ## Part 5: Handling Bad Input and Run-Time Errors
@@ -112,6 +130,8 @@ Testing for bad input and run-time errors helps ensure that the game can handle 
   - Ensure that the game state remains consistent in case of unexpected errors.
 - **Opponent Disconnection**:
   - Verify that the game handles opponent disconnection gracefully.
+- **Random Event Errors**:
+  - Ensure that random events do not cause unexpected errors or crashes.
 
 ### Bad Input Test Examples:
 - **Test Case**: Pressing an unsupported key (e.g., `X`).
@@ -126,18 +146,25 @@ Testing for bad input and run-time errors helps ensure that the game can handle 
   - **Test Data**: Opponent disconnects while the player is making a move.
   - **Expected Outcome**: Player is notified, and the game ends.
 
+- **Test Case**: Random event triggers during critical action.
+  - **Test Data**: Random event triggers while a player is merging tiles.
+  - **Expected Outcome**: Random event is executed after the current action is completed, ensuring stability.
+
 
 ## Part 6: Test Plan Summary Table
 
 | Test Case                   | Test Data                                | Expected Outcome                                                                                     |
 |----------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------|
 | Moving Tiles Left          | Grid with two `2` tiles                 | Tiles merge into a single tile of value `4` on the leftmost side of the grid.                        |
-| Merging Equal Value Tiles  | Two `16` tiles                          | Tiles merge into one `32` tile, score increases by `32` points.                                      |
+| Merging Equal Value Tiles  | Two `16` tiles                          | Tiles merge into one `32` tile                                     |
 | Reaching Max Tile Value    | Merging until value `2048` is reached   | Player is notified of "Victory", opponent is notified of their loss.                                 |
 | Full Grid, No Moves        | Fully populated grid                    | Game ends with a "Game Over" message.                                                                |
-| Invalid Key Press          | Pressing `X`                            | No effect on game grid or score.                                                                     |
+| Invalid Key Press          | Pressing `X`                            | No effect on game grid.                                                                     |
 | Saving During Movement     | Attempt to save while tiles move        | "Save failed" message displayed, game remains stable without crashing.                               |
 | Undo Last Move             | Perform move, then undo                 | Grid reverts to the state before the move.                                                           |
-| Multiple Merges in One Move| Four tiles: `4`, `4`, `8`, `8`          | Tiles merge into `8` and `16`, score updated accordingly.                                           |
+| Multiple Merges in One Move| Four tiles: `4`, `4`, `8`, `8`          | Tiles merge into `8` and `16`.                                           |
 | Player vs Opponent Win     | Player reaches `2048` tile first        | Player wins, opponent is notified of their loss.                                                     |
 | Opponent Disconnects       | Opponent disconnects mid-game           | Player is notified, and game ends.                                                                   |
+| Random Event: Board Swap   | Random event triggers                   | All player boards are swapped, and gameplay continues with new board states.                         |
+| Random Event: Halve Blocks | Random event triggers                   | All block values are halved, and gameplay continues.                                                 |
+| Random Event: Inverted Controls | Random event triggers             | Controls are inverted temporarily, players must adapt to continue playing.                           |
