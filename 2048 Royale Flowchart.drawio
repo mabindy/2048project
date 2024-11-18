@@ -70,7 +70,7 @@
           <mxGeometry x="250" y="620" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="TIEl4N58fSfIPEQDUaly-28" value="Shows &#39;Winner!&#39; screen, awards player with coins, and back to menu button" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-20" y="565" width="120" height="65" as="geometry" />
+          <mxGeometry x="-80" y="612.5" width="120" height="65" as="geometry" />
         </mxCell>
         <mxCell id="TIEl4N58fSfIPEQDUaly-29" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TIEl4N58fSfIPEQDUaly-23" target="TIEl4N58fSfIPEQDUaly-28">
           <mxGeometry relative="1" as="geometry">
@@ -240,6 +240,20 @@
         </mxCell>
         <mxCell id="TIEl4N58fSfIPEQDUaly-74" value="Purchased coin amount added to balance" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="430" y="-120" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="TIEl4N58fSfIPEQDUaly-76" value="Event occurs and is announced to all players (Ex: Inverted controls, all players swap boards with each other, all block values halved, etc...)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-150" y="453.75" width="120" height="112.5" as="geometry" />
+        </mxCell>
+        <mxCell id="TIEl4N58fSfIPEQDUaly-78" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TIEl4N58fSfIPEQDUaly-23" target="TIEl4N58fSfIPEQDUaly-76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="530" as="sourcePoint" />
+            <mxPoint x="100" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIEl4N58fSfIPEQDUaly-79" value="Event occurs randomly" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="TIEl4N58fSfIPEQDUaly-78">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
